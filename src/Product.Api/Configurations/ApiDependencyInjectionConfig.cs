@@ -1,3 +1,4 @@
+using Product.Api.Configurations.Extensions;
 using Product.Api.Configurations.OpenApi;
 
 namespace Product.Api.Configurations;
@@ -17,6 +18,8 @@ public static class ApiDependencyInjectionConfig
 
     public static WebApplication UseApi(this WebApplication app)
     {
+        //app.ApplyMigrations();
+
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
@@ -28,6 +31,8 @@ public static class ApiDependencyInjectionConfig
         }
 
         app.UseHttpsRedirection();
+
+        app.UseAuthentication();
 
         app.UseAuthorization();
 
